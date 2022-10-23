@@ -3,17 +3,22 @@
 
 ---
 ```
-### Quotes
- " The only way to learn a new programming language is by writing programs in it."
-  ―  Dennis Ritchie
 
- " C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do it blows your whole leg off "
-  ― Bjarne Stroustrup
+" The only way to learn a new programming language is by writing programs in it."
 
- " Low-level programming is good for the programmer' s soul. "
-  ―  John Carmack
+―  Dennis Ritchie
 
- “Programming is like sex: It may give some concrete results, but that is not why we do it.”
-  ― Bjarne Stroustrup
+" C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do it blows your whole leg off "
+
+― Bjarne Stroustrup
+
+" Low-level programming is good for the programmer' s soul. "
+
+―  John Carmack
+
+“Programming is like sex: It may give some concrete results, but that is not why we do it.”
+
+― Bjarne Stroustrup
+
 ```
  

@@ -2,26 +2,35 @@
 
 ## Abstract
 
-This document is a set of guidelines for using C++ well. The aim of this document is to help people to use modern C++ effectively. By “modern C++” we mean effective use of the ISO C++ standard (currently C++20, but almost all of our recommendations also apply to C++17, C++14 and C++11). In other words, what would you like your code to look like in 5 years’ time, given that you can start now? In 10 years’ time?
+> ***The aim of this repo is to help C++ programmers to write simpler, more efficient, more maintainable code.(as per the c++17, c++20 std) .***
 
-### Express ideas directly in code
-***Reason*** Compilers don’t read comments (or design documents) and neither do many programmers (consistently). What is expressed in code has defined semantics and can (in principle) be checked by compilers and other tools.
+# P: Philosophy[](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p-philosophy)
 
-##### Example
+The rules in this section are very general. ( For most of the programmer's )
 
-```
-class Date {
-public:
-    Month month() const;  // do
-    int month();          // don't
-    // ...
-};
+Philosophy rules summary:
 
-```
+-   [ Express ideas directly in code](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-direct)
+-   [ Express intent](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-what)
+-   [P.4: Ideally, a program should be statically type safe](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-typesafe)
+-   [P.5: Prefer compile-time checking to run-time checking](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-compile-time)
+-   [P.6: What cannot be checked at compile time should be checkable at run time](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-run-time)
+-   [P.7: Catch run-time errors early](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-early)
+-   [P.8: Don’t leak any resources](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-leak)
+-   [P.9: Don’t waste time or space](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-waste)
+-   [P.10: Prefer immutable data to mutable data](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-mutable)
+-   [P.11: Encapsulate messy constructs, rather than spreading through the code](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-library)
+-   [P.12: Use supporting tools as appropriate](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-tools)
+-   [P.13: Use support libraries as appropriate](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-lib)
 
-The first declaration of  `month`  is explicit about returning a  `Month`  and about not modifying the state of the  `Date`  object. The second version leaves the reader guessing and opens more possibilities for uncaught bugs.
+### Express Ideas directly in code
+- No kidding programmers dont like to reading commnets. 
+- Your code should explain itself through sensible functional naming. Your code should explain itself so comments are not necessary.
+- The rule we use is only comment if you need to explain why you are doing something and never what you are doing. You should only have to explain why your code is doing what it's doing if it's something unusual or unexpected, like there are external behaviours that are not obviously involved.
 
-***Example, bad*** This loop is a restricted form of  `std::find`:
+##### Example, bad
+
+This loop is a restricted form of  `std::find`:
 
 ```
 void f(vector<string>& v)
@@ -41,7 +50,9 @@ void f(vector<string>& v)
 
 ```
 
-***Example, good*** A much clearer expression of intent would be:
+##### Example, good
+
+A much clearer expression of intent would be:
 
 ```
 void f(vector<string>& v)
@@ -53,21 +64,27 @@ void f(vector<string>& v)
     // ...
 }
 ```
-A well-designed library expresses intent (what is to be done, rather than just how something is being done) far better than direct use of language features.
 
-A C++ programmer should know the basics of the standard library, and use it where appropriate. Any programmer should know the basics of the foundation libraries of the project being worked on, and use them appropriately. Any programmer using these guidelines should know the  [guidelines support library](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-gsl), and use it appropriately.
+##### Enforcement
 
-***Enforcement*** Very hard in general.
+Very hard in general.
 
 -   use  `const`  consistently (check if member functions modify their object; check if functions modify arguments passed by pointer or reference)
 -   flag uses of casts (casts neuter the type system)
 -   detect code that mimics the standard library (hard)
 
-### Express intent
+##### Enforcement
 
- ***Reason*** Unless the intent of some code is stated (e.g., in names or comments), it is impossible to tell whether the code does what it is supposed to do.
+***Use an up-to-date C++ compiler (currently C++20 or C++17) with a set of options that do not accept extensions.***
+
+###  Express intent
+
+##### Reason
+
+Unless the intent of some code is stated (e.g., in names or comments), it is impossible to tell whether the code does what it is supposed to do.
 
 ##### Example
+
 ```
 gsl::index i = 0;
 while (i < v.size()) {
@@ -90,33 +107,161 @@ Now, there is no explicit mention of the iteration mechanism, and the loop opera
 ```
 for (auto& x : v) { /* modify x */ }
 ```
-Sometimes better still, use a named algorithm. This example uses the  `for_each`  from the Ranges TS because it directly expresses the intent:
 
-```
-for_each(v, [](int x) { /* do something with the value of x */ });
-for_each(par, v, [](int x) { /* do something with the value of x */ });
+##### Enforcement
 
-```
-The last variant makes it clear that we are not interested in the order in which the elements of  `v`  are handled.
+Look for common patterns for which there are better alternatives
 
-A programmer should be familiar with
+-   simple  `for`  loops vs. range-`for`  loops
+-   `f(T*, int)`  interfaces vs.  `f(span<T>)`  interfaces
+-   loop variables in too large a scope
+-   naked  `new`  and  `delete`
+-   functions with many parameters of built-in types
+### Ideally, a program should be statically type safe[](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p4-ideally-a-program-should-be-statically-type-safe)
 
--   [The guidelines support library](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-gsl)
--   [The ISO C++ Standard Library](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-stdlib)
--   Whatever foundation libraries are used for the current project(s)
+##### Reason
+
+Ideally, a program would be completely statically (compile-time) type safe. Unfortunately, that is not possible. Problem areas:
+
+-   unions
+-   casts
+-   array decay
+-   range errors
+-   narrowing conversions
+
 ##### Note
 
-Alternative formulation: Say what should be done, rather than just how it should be done.
+These areas are sources of serious problems (e.g., crashes and security violations). We try to provide alternative techniques.
 
-##### Note
+##### Enforcement
 
-Some language constructs express intent better than others.
+We can ban, restrain, or detect the individual problem categories separately, as required and feasible for individual programs. Always suggest an alternative. For example:
+
+-   unions – use  `variant`  (in C++17)
+-   casts – minimize their use; templates can help
+-   array decay – use  `span`  (from the GSL)
+-   range errors – use  `span`
+-   narrowing conversions – minimize their use and use  `narrow`  or  `narrow_cast`  (from the GSL) where they are necessary
+
+### Prefer compile-time checking to run-time checking[](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p5-prefer-compile-time-checking-to-run-time-checking)
+
+##### Reason
+
+Code clarity and performance. You don’t need to write error handlers for errors caught at compile time.
 
 ##### Example
 
-If two  `int`s are meant to be the coordinates of a 2D point, say so:
+```
+// Int is an alias used for integers
+int bits = 0;         // don't: avoidable code
+for (Int i = 1; i; i <<= 1)
+    ++bits;
+if (bits < 32)
+    cerr << "Int too small\n";
 
 ```
-draw_line(int, int, int, int);  // obscure
-draw_line(Point, Point);        // clearer
+
+This example fails to achieve what it is trying to achieve (because overflow is undefined) and should be replaced with a simple  `static_assert`:
+
 ```
+// Int is an alias used for integers
+static_assert(sizeof(Int) >= 4);    // do: compile-time check
+
+```
+
+Or better still just use the type system and replace  `Int`  with  `int32_t`.
+
+#####
+
+**Alternative formulation**: Don’t postpone to run time what can be done well at compile time.
+
+##### Enforcement
+
+-   Look for pointer arguments.
+-   Look for run-time checks for range violations.
+
+
+### What cannot be checked at compile time should be checkable at run time[](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p6-what-cannot-be-checked-at-compile-time-should-be-checkable-at-run-time)
+
+##### Reason
+
+Leaving hard-to-detect errors in a program is asking for crashes and bad results.
+
+##### Note
+
+Ideally, we catch all errors (that are not errors in the programmer’s logic) at either compile time or run time. It is impossible to catch all errors at compile time and often not affordable to catch all remaining errors at run time. However, we should endeavor to write programs that in principle can be checked, given sufficient resources (analysis programs, run-time checks, machine resources, time).
+
+##### Example, bad
+
+```
+// separately compiled, possibly dynamically loaded
+extern void f(int* p);
+
+void g(int n)
+{
+    // bad: the number of elements is not passed to f()
+    f(new int[n]);
+}
+
+```
+
+Here, a crucial bit of information (the number of elements) has been so thoroughly “obscured” that static analysis is probably rendered infeasible and dynamic checking can be very difficult when  `f()`  is part of an ABI so that we cannot “instrument” that pointer. We could embed helpful information into the free store, but that requires global changes to a system and maybe to the compiler. What we have here is a design that makes error detection very hard.
+
+##### Example, bad
+
+We can of course pass the number of elements along with the pointer:
+
+```
+// separately compiled, possibly dynamically loaded
+extern void f2(int* p, int n);
+
+void g2(int n)
+{
+    f2(new int[n], m);  // bad: a wrong number of elements can be passed to f()
+}
+
+```
+
+Passing the number of elements as an argument is better (and far more common) than just passing the pointer and relying on some (unstated) convention for knowing or discovering the number of elements. However (as shown), a simple typo can introduce a serious error. The connection between the two arguments of  `f2()`  is conventional, rather than explicit.
+
+Also, it is implicit that  `f2()`  is supposed to  `delete`  its argument (or did the caller make a second mistake?).
+
+##### Example, bad
+
+The standard library resource management pointers fail to pass the size when they point to an object:
+
+```
+// separately compiled, possibly dynamically loaded
+// NB: this assumes the calling code is ABI-compatible, using a
+// compatible C++ compiler and the same stdlib implementation
+extern void f3(unique_ptr<int[]>, int n);
+
+void g3(int n)
+{
+    f3(make_unique<int[]>(n), m);    // bad: pass ownership and size separately
+}
+
+```
+
+##### Example
+
+We need to pass the pointer and the number of elements as an integral object:
+
+```
+extern void f4(vector<int>&);   // separately compiled, possibly dynamically loaded
+extern void f4(span<int>);      // separately compiled, possibly dynamically loaded
+                                // NB: this assumes the calling code is ABI-compatible, using a
+                                // compatible C++ compiler and the same stdlib implementation
+
+void g3(int n)
+{
+    vector<int> v(n);
+    f4(v);                     // pass a reference, retain ownership
+    f4(span<int>{v});          // pass a view, retain ownership
+}
+
+```
+
+This design carries the number of elements along as an integral part of an object, so that errors are unlikely and dynamic (run-time) checking is always feasible, if not always affordable.
+
+#####

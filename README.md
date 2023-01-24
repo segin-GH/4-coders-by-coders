@@ -1,6 +1,8 @@
 # About this repo & why even bother? 
 **This repo is ment for coders who wants to become better at programming if you know "every" thing this repo is not ment for you.**
 
+**Do I know to code BIG NO;  just a beginner**
+
 ---
 ```
 

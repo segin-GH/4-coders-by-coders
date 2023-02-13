@@ -1,4 +1,4 @@
-# What is a state Machine ?
+# What is a State Machine?
 A state machine is a way of thinking about a system that can be in different "states" and change from one state to another based on certain events or inputs. Think of a traffic light: it can be in the state of "red light," "yellow light," or "green light," and it changes from one state to another based on a set of rules (for example, a timer that switches from green to yellow to red).
 
 In the same way, a state machine can be used to model the behavior of any system that has different states and transitions between those states. For example, a simple toy car could have the states "off," "moving forward," and "moving backward," and it would change from one state to another based on the inputs from the person playing with it (such as pressing a button to make the car move forward).
@@ -27,3 +27,16 @@ FSAs are defined by a set of states, a set of input symbols, a transition functi
 FSAs can be implemented using various algorithms and data structures, such as tables or graphs, and can be represented graphically using state diagrams. They are also used in the design and implementation of various computer systems, such as compilers, text editors, and network protocols.
 
 In summary, finite state automata are a useful tool for modeling and understanding the behavior of event-driven systems, and are widely used in various fields, including computer science and engineering.
+
+## How to write a better program
+1.  Event-driven programming: A programming technique in which the system reacts to events or inputs rather than following a set sequence of steps. This is often used in embedded systems that need to respond to real-time inputs.
+    
+2.  Real-time operating systems (RTOS): An operating system designed for real-time systems that require deterministic response times to events. An RTOS provides basic services such as scheduling, inter-process communication, and memory management.
+    
+3.  Object-oriented programming (OOP): A programming paradigm that uses objects to represent real-world concepts and structures data and operations into classes. OOP is often used in embedded systems because it provides a clear, modular approach to programming complex systems.
+    
+4.  Model-Driven Development (MDD): An approach to software development that emphasizes the use of models to describe and validate system behavior, rather than writing code. MDD is often used in embedded systems because it provides a clear and concise way to define the behavior of the system and helps to ensure that the system behaves correctly and consistently.
+    
+5.  Design patterns: Reusable solutions to common problems in software design that can be adapted to different programming environments. Design patterns are often used in embedded systems to help ensure that the system is efficient, reusable, and maintainable.
+
+6. State machines are useful in embedded software development because they provide a clear and concise way to model the behavior of a system, and they help to ensure that the system behaves correctly and consistently, even in complex or unexpected situations. State machines are often used in combination with other techniques and approaches, such as event-driven programming, real-time operating systems, object-oriented programming, and design patterns, to create effective and efficient embedded software solutions.

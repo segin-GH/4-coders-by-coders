@@ -1,4 +1,4 @@
-# What is a State Machine?
+# What is a state Machine ?
 A state machine is a way of thinking about a system that can be in different "states" and change from one state to another based on certain events or inputs. Think of a traffic light: it can be in the state of "red light," "yellow light," or "green light," and it changes from one state to another based on a set of rules (for example, a timer that switches from green to yellow to red).
 
 In the same way, a state machine can be used to model the behavior of any system that has different states and transitions between those states. For example, a simple toy car could have the states "off," "moving forward," and "moving backward," and it would change from one state to another based on the inputs from the person playing with it (such as pressing a button to make the car move forward).
@@ -28,10 +28,10 @@ FSAs can be implemented using various algorithms and data structures, such as ta
 
 In summary, finite state automata are a useful tool for modeling and understanding the behavior of event-driven systems, and are widely used in various fields, including computer science and engineering.
 
-## How to write a better program
+## How to write a better progrm
 1.  Event-driven programming: A programming technique in which the system reacts to events or inputs rather than following a set sequence of steps. This is often used in embedded systems that need to respond to real-time inputs.
     
-2.  Real-time operating systems (RTOS): An operating system designed for real-time systems that require deterministic response times to events. An RTOS provides basic services such as scheduling, inter-process communication, and memory management.
+2.  Real-time operating systems (RTOS): An operating system designed for real-time systems that requires deterministic response times to events. An RTOS provides basic services such as scheduling, inter-process communication, and memory management.
     
 3.  Object-oriented programming (OOP): A programming paradigm that uses objects to represent real-world concepts and structures data and operations into classes. OOP is often used in embedded systems because it provides a clear, modular approach to programming complex systems.
     
@@ -40,3 +40,22 @@ In summary, finite state automata are a useful tool for modeling and understandi
 5.  Design patterns: Reusable solutions to common problems in software design that can be adapted to different programming environments. Design patterns are often used in embedded systems to help ensure that the system is efficient, reusable, and maintainable.
 
 6. State machines are useful in embedded software development because they provide a clear and concise way to model the behavior of a system, and they help to ensure that the system behaves correctly and consistently, even in complex or unexpected situations. State machines are often used in combination with other techniques and approaches, such as event-driven programming, real-time operating systems, object-oriented programming, and design patterns, to create effective and efficient embedded software solutions.
+
+# How to write a better code?
+
+1. **Plan ahead:** Before you start writing code, take the time to carefully plan your
+solution. This includes defining the requirements, understanding the system architecture, and creating a detailed design. This helps to ensure that you have a clear understanding of what you need to build and how to build it, reducing the risk of misunderstandings or unexpected problems down the line.
+
+1.  Write clear and maintainable code: Embedded systems often have limited resources and must run for extended periods of time, so it is important to write code that is easy to understand and maintain. This helps to reduce the likelihood of bugs and makes it easier to fix any issues that do arise.
+    
+2.  Test thoroughly: Embedded systems can be difficult to test, so it is important to test your code thoroughly and validate it against a wide range of inputs and scenarios. This helps to ensure that the system behaves as expected and reduces the risk of bugs or unexpected behavior.
+    
+3.  Consider resource constraints: Embedded systems often have limited resources, such as memory, processing power, and battery life, so it is important to consider these constraints when designing and implementing your code. This helps to ensure that the system runs efficiently and does not run out of resources.
+    
+4.  Use version control: Version control systems, such as Git, help to track changes to your code over time and make it easier to collaborate with other developers. They also provide a backup of your code, making it easier to revert to previous versions if necessary.
+    
+5.  Document your code: Documenting your code helps other developers understand how your code works and makes it easier to maintain and update in the future. This is especially important in embedded systems, where the code may be running for extended periods of time and must be updated or fixed in response to changing requirements or bugs.
+    
+6.  Keep the design simple: Simple designs are often more robust and easier to maintain than complex designs. In embedded systems, it is important to keep the design as simple as possible, focusing on the core functionality and avoiding unnecessary complexity.
+    
+7.  Stay up-to-date with industry developments: Embedded software development is a rapidly evolving field, and it is important to stay up-to-date with the latest developments and technologies in order to build the most effective and efficient solutions.

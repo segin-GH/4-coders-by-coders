@@ -28,7 +28,7 @@ FSAs can be implemented using various algorithms and data structures, such as ta
 
 In summary, finite state automata are a useful tool for modeling and understanding the behavior of event-driven systems, and are widely used in various fields, including computer science and engineering.
 
-## How to write a better progrm
+## Ways to write a program.
 1.  Event-driven programming: A programming technique in which the system reacts to events or inputs rather than following a set sequence of steps. This is often used in embedded systems that need to respond to real-time inputs.
     
 2.  Real-time operating systems (RTOS): An operating system designed for real-time systems that requires deterministic response times to events. An RTOS provides basic services such as scheduling, inter-process communication, and memory management.
